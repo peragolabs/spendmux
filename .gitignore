@@ -1,0 +1,10 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+/spendmux
+coverage.out
+frontend/react/node_modules/
+frontend/react/dist/
+priv/www/assets/
+vault.pem

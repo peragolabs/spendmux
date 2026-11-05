@@ -1,0 +1,52 @@
+# Localhost stack: postgres + app (image contains the built SPA)
+# Usage: docker compose -f docker-compose.localhost.yml up --build
+services:
+  postgres:
+    image: postgres:16.1
+    container_name: spendmux_pg
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: spendmux_dev_change_me
+      POSTGRES_DB: spendmux
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - spendmux_network
+    restart: unless-stopped
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spendmux_app
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    networks:
+      - spendmux_network
+    env_file:
+      - .env
+    environment:
+      PORT: "8080"
+      DATABASE_URL: postgres://postgres:spendmux_dev_change_me@postgres:5432/spendmux?sslmode=disable
+      BASE_URL: http://localhost:8080
+      VAULT_PRIVATE_KEY_FILE: /run/secrets/vault.pem
+    secrets:
+      - vault.pem
+    restart: unless-stopped
+
+
+secrets:
+  vault.pem:
+    # Generate once: openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:4096 -out vault.pem
+    file: ${VAULT_PRIVATE_KEY_PATH:-./vault.pem}
+
+volumes:
+  postgres_data:
+
+networks:
+  spendmux_network:
+    driver: bridge

@@ -1,0 +1,473 @@
+@import "tailwindcss";
+
+/* -------------------------------------------------------------------------- */
+/*  Design tokens                                                             */
+/*                                                                            */
+/*  Every theme is a CSS variable pack. Switch by setting                     */
+/*  <html data-theme="cream-navy"> (see theme/index.ts).                      */
+/*                                                                            */
+/*  Tokens are HSL triplets so Tailwind can use them via hsl(var(--x)).       */
+/* -------------------------------------------------------------------------- */
+
+@layer base {
+  :root {
+    /* cream-navy (default) */
+    --background: 40 45% 96%;
+    --foreground: 220 45% 12%;
+
+    --card: 40 55% 98%;
+    --card-foreground: 220 45% 12%;
+
+    --popover: 40 55% 98%;
+    --popover-foreground: 220 45% 12%;
+
+    --primary: 220 55% 18%;
+    --primary-foreground: 40 55% 97%;
+
+    --secondary: 40 30% 92%;
+    --secondary-foreground: 220 45% 18%;
+
+    --muted: 40 25% 91%;
+    --muted-foreground: 220 15% 40%;
+
+    --accent: 14 84% 55%;
+    --accent-foreground: 40 55% 97%;
+
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 55% 34%;
+
+    --border: 30 20% 84%;
+    --input: 30 20% 84%;
+    --ring: 220 55% 30%;
+
+    --radius: 0.75rem;
+
+    /* Typography */
+    --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+    --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    /* Ambience */
+    --hero-glow-a: 14 84% 55%;
+    --hero-glow-b: 220 55% 30%;
+    --grain-opacity: 0.03;
+  }
+
+  [data-theme="midnight"] {
+    --background: 224 40% 6%;
+    --foreground: 210 30% 94%;
+
+    --card: 224 38% 9%;
+    --card-foreground: 210 30% 94%;
+
+    --popover: 224 38% 9%;
+    --popover-foreground: 210 30% 94%;
+
+    --primary: 210 90% 66%;
+    --primary-foreground: 224 40% 6%;
+
+    --secondary: 224 25% 14%;
+    --secondary-foreground: 210 30% 94%;
+
+    --muted: 224 25% 14%;
+    --muted-foreground: 220 12% 65%;
+
+    --accent: 190 90% 55%;
+    --accent-foreground: 224 40% 6%;
+
+    --destructive: 358 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 55% 60%;
+
+    --border: 224 22% 18%;
+    --input: 224 22% 18%;
+    --ring: 210 90% 60%;
+
+    --hero-glow-a: 210 90% 60%;
+    --hero-glow-b: 264 70% 55%;
+    --grain-opacity: 0.06;
+  }
+
+  [data-theme="forest"] {
+    --background: 45 25% 95%;
+    --foreground: 155 35% 10%;
+
+    --card: 45 40% 98%;
+    --card-foreground: 155 35% 10%;
+
+    --popover: 45 40% 98%;
+    --popover-foreground: 155 35% 10%;
+
+    --primary: 155 55% 20%;
+    --primary-foreground: 45 40% 96%;
+
+    --secondary: 90 15% 88%;
+    --secondary-foreground: 155 55% 18%;
+
+    --muted: 90 15% 90%;
+    --muted-foreground: 155 12% 34%;
+
+    --accent: 40 85% 52%;
+    --accent-foreground: 155 55% 12%;
+
+    --destructive: 0 70% 44%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 155 60% 30%;
+
+    --border: 90 18% 82%;
+    --input: 90 18% 82%;
+    --ring: 155 55% 30%;
+
+    --hero-glow-a: 40 85% 52%;
+    --hero-glow-b: 155 55% 25%;
+    --grain-opacity: 0.04;
+  }
+
+  [data-theme="aurora"] {
+    --background: 232 40% 8%;
+    --foreground: 220 25% 96%;
+
+    --card: 232 38% 12%;
+    --card-foreground: 220 25% 96%;
+
+    --popover: 232 38% 12%;
+    --popover-foreground: 220 25% 96%;
+
+    --primary: 168 75% 55%;
+    --primary-foreground: 232 40% 8%;
+
+    --secondary: 232 30% 18%;
+    --secondary-foreground: 220 25% 96%;
+
+    --muted: 232 28% 18%;
+    --muted-foreground: 220 15% 72%;
+
+    --accent: 322 85% 65%;
+    --accent-foreground: 232 40% 8%;
+
+    --destructive: 358 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 168 60% 55%;
+
+    --border: 232 25% 24%;
+    --input: 232 25% 24%;
+    --ring: 168 75% 55%;
+
+    --hero-glow-a: 322 85% 60%;
+    --hero-glow-b: 168 75% 55%;
+    --grain-opacity: 0.05;
+  }
+
+  [data-theme="plain"] {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+
+    --primary: 0 0% 8%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 8%;
+
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 0 0% 8%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 55% 34%;
+
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 0 0% 30%;
+
+    --hero-glow-a: 0 0% 60%;
+    --hero-glow-b: 0 0% 20%;
+    --grain-opacity: 0.02;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Tailwind v4 @theme                                                        */
+/*  Maps CSS variables → Tailwind utility scale so `bg-background`,           */
+/*  `text-foreground`, `border-border`, `rounded-lg`, etc. all resolve.       */
+/* -------------------------------------------------------------------------- */
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-success: hsl(var(--success));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Global base                                                               */
+/* -------------------------------------------------------------------------- */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  html,
+  body,
+  #app {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01", "ss03";
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 250ms ease, color 250ms ease;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    font-weight: 500;
+    color: hsl(var(--foreground));
+  }
+
+  ::selection {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+
+  code, pre, kbd {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+
+  /* Custom focus ring — used across the app */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Ambient / decorative                                                      */
+/* -------------------------------------------------------------------------- */
+
+@layer components {
+  .hero-glow {
+    background:
+      radial-gradient(ellipse 60% 60% at 12% -6%, hsl(var(--hero-glow-a) / 0.22), transparent 55%),
+      radial-gradient(ellipse 55% 55% at 92% 6%, hsl(var(--hero-glow-b) / 0.24), transparent 55%);
+  }
+
+  /* Scene entrances, rising rows, growing bars */
+  .smx-scene-in { animation: smx-scene-in 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .smx-rise { animation: smx-rise 480ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .smx-grow { transform-origin: left center; animation: smx-grow 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .smx-progress { animation: smx-progress linear both; }
+
+  @keyframes smx-scene-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @keyframes smx-rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @keyframes smx-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes smx-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .smx-scene-in, .smx-rise, .smx-grow { animation-duration: 1ms; animation-delay: 0ms !important; }
+  }
+
+  /* Scroll reveal (lib/reveal.ts). Hidden only once JS has opted in. */
+  .reveal-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 700ms cubic-bezier(0.2, 0.7, 0.2, 1), transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: calc(var(--reveal-i, 0) * 80ms);
+  }
+  .reveal-ready [data-reveal].is-revealed { opacity: 1; transform: none; }
+
+  /* Hero headline: words rise in one after another */
+  .smx-word { display: inline-block; animation: smx-word 760ms cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--w, 0) * 70ms + 80ms); }
+  @keyframes smx-word { from { opacity: 0; transform: translateY(0.45em); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+
+  /* Page entrance: opacity only, so fixed drawers inside keep the viewport as their box */
+  .smx-fade { animation: smx-fade 380ms ease-out both; }
+  @keyframes smx-fade { from { opacity: 0; } to { opacity: 1; } }
+
+  /* Cards that lift on hover */
+  .smx-lift { transition: transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 260ms, border-color 260ms; }
+  .smx-lift:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -24px hsl(var(--foreground) / 0.35); border-color: hsl(var(--primary) / 0.4); }
+
+  /* Blinking caret and a packet travelling along a wire (components/SealDemo.tsx) */
+  .smx-caret { display: inline-block; width: 7px; height: 1em; margin-left: 1px; vertical-align: -2px; background: currentColor; animation: smx-blink 1s steps(1) infinite; }
+  @keyframes smx-blink { 50% { opacity: 0; } }
+  .smx-packet { animation: smx-packet 1100ms cubic-bezier(0.5, 0, 0.3, 1) infinite; }
+  @keyframes smx-packet { from { left: 0; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } to { left: calc(100% - 8px); opacity: 0; } }
+
+  /* Terminal lines that print one at a time once in view */
+  .smx-type > * { opacity: 0; }
+  .smx-type.is-on > * { animation: smx-rise 360ms ease-out both; animation-delay: calc(var(--l, 0) * 260ms); }
+
+  /* Landing story scenes (components/Story.tsx) */
+  .smx-pulse { animation: smx-pulse 1.2s ease-in-out infinite; }
+  @keyframes smx-pulse { 50% { opacity: 0.3; } }
+  .smx-pop { animation: smx-pop 360ms cubic-bezier(0.3, 1.6, 0.5, 1) both; }
+  @keyframes smx-pop { from { transform: scale(0); } to { transform: scale(1); } }
+  .smx-press { animation: smx-press 700ms ease-in-out 200ms both; }
+  @keyframes smx-press { 40% { transform: scale(0.94); box-shadow: 0 0 0 6px hsl(var(--primary) / 0.18); } }
+  .smx-drop { animation: smx-drop 800ms cubic-bezier(0.5, 0, 0.3, 1) both; }
+  @keyframes smx-drop { from { top: 0; opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } to { top: calc(100% - 8px); opacity: 0; } }
+
+  /* Provider strip marquee */
+  .smx-marquee { mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .smx-marquee-track { display: flex; width: max-content; animation: smx-marquee 38s linear infinite; }
+  .smx-marquee:hover .smx-marquee-track { animation-play-state: paused; }
+  @keyframes smx-marquee { to { transform: translateX(-50%); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .smx-word, .smx-packet, .smx-caret, .smx-fade, .smx-pulse, .smx-pop, .smx-press, .smx-drop { animation: none; }
+    .smx-lift:hover { transform: none; }
+    .smx-type > * { opacity: 1; }
+    .smx-type.is-on > * { animation: none; }
+    .smx-marquee { mask-image: none; }
+    .smx-marquee-track { animation: none; flex-wrap: wrap; width: auto; }
+    .smx-marquee-track > [aria-hidden] { display: none; }
+  }
+
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+    background-size: 140px 140px;
+    mix-blend-mode: multiply;
+  }
+
+  [data-theme="midnight"] .grain::before,
+  [data-theme="aurora"] .grain::before {
+    mix-blend-mode: screen;
+  }
+
+  .glass {
+    background: hsl(var(--card) / 0.72);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid hsl(var(--border) / 0.7);
+  }
+
+  /* Subtle underlined-on-hover text link */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 200ms ease;
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+
+  .mono-eyebrow {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: hsl(var(--accent));
+  }
+
+  /* Marquee-style stack chip row on landing */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: hsl(var(--muted-foreground));
+    background: hsl(var(--muted));
+    border: 1px solid hsl(var(--border));
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Playground reply formatting (marked + KaTeX output) */
+.prose-chat p { margin: 0 0 0.6em; }
+.prose-chat p:last-child { margin-bottom: 0; }
+.prose-chat pre { margin: 0.5em 0; overflow-x: auto; border-radius: 0.6rem; background: #09090b; color: #e4e4e7; padding: 0.75rem; font-family: var(--font-mono); font-size: 0.8rem; }
+.prose-chat code { font-family: var(--font-mono); font-size: 0.85em; }
+.prose-chat :not(pre) > code { background: hsl(var(--muted)); padding: 0.1em 0.35em; border-radius: 0.3rem; }
+.prose-chat ul, .prose-chat ol { margin: 0.4em 0 0.6em 1.25em; }
+.prose-chat h1, .prose-chat h2, .prose-chat h3 { margin: 0.8em 0 0.3em; font-weight: 600; }
+.prose-chat .katex-display { margin: 0.6em 0; overflow-x: auto; }

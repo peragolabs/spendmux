@@ -1,0 +1,12 @@
+.git
+.github
+.env
+.env.*
+!.env.example
+.DS_Store
+**/.DS_Store
+frontend/react/node_modules
+frontend/react/dist
+priv/www/assets
+spendmux
+coverage.out

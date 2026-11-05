@@ -1,0 +1,209 @@
+# Every image is pinned by digest, so a tag re-pointed upstream cannot change
+# what runs here on the next pull or restart. Bump digests deliberately.
+services:
+  # Public edge: TLS (Let's Encrypt), HTTP -> HTTPS, routing to the app.
+  # It reads containers through docker-socket-proxy, never the raw socket.
+  traefik:
+    image: traefik:v3.6.25@sha256:31267173a15b4944e797a76ffd9c419707c8d8b32fe5b610f80cd0cfa05f372d
+    command:
+      - --providers.docker=true
+      - --providers.docker.endpoint=tcp://docker-socket-proxy:2375
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=proxy_net
+      - --entrypoints.web.address=:80
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      - --entrypoints.websecure.address=:443
+      # Keep X-Real-Ip / X-Forwarded-For only when Cloudflare sent them; from
+      # anyone else Traefik replaces them with the real source address.
+      # Ranges from https://www.cloudflare.com/ips (checked 2026-10-24).
+      - --entrypoints.websecure.forwardedheaders.trustedips=173.245.48.0/20,103.21.244.0/22,103.22.200.0/22,103.31.4.0/22,141.101.64.0/18,108.162.192.0/18,190.93.240.0/20,188.114.96.0/20,197.234.240.0/22,198.41.128.0/17,162.158.0.0/15,104.16.0.0/13,104.24.0.0/14,172.64.0.0/13,131.0.72.0/22,2400:cb00::/32,2606:4700::/32,2803:f800::/32,2405:b500::/32,2405:8100::/32,2a06:98c0::/29,2c0f:f248::/32
+      - --certificatesresolvers.myresolver.acme.email=${ACME_EMAIL:?set ACME_EMAIL for Let's Encrypt}
+      - --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
+      - --certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web
+      - --api.dashboard=false
+      - --global.sendanonymoususage=false
+      - --log.level=INFO
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - docker-socket-proxy
+    networks:
+      - proxy_net
+      - docker_api
+    volumes:
+      - letsencrypt:/letsencrypt
+    restart: unless-stopped
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+
+  # Read-only Docker API for Traefik: container listings and events only.
+  docker-socket-proxy:
+    image: tecnativa/docker-socket-proxy:v0.4.1@sha256:3400c429c5f9e1b21d62130fb93b16e2e772d4fb7695bd52fc2b743800b9fe9e
+    environment:
+      CONTAINERS: 1
+      EVENTS: 1
+      PING: 1
+      VERSION: 1
+      POST: 0
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - docker_api
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+  postgres:
+    image: postgres:16.4-alpine@sha256:5660c2cbfea50c7a9127d17dc4e48543eedd3d7a41a595a2dfa572471e37e64c
+    command: >
+      postgres -c wal_level=replica -c max_connections=100
+    environment:
+      POSTGRES_USER: spendmux
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+      POSTGRES_DB: spendmux
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    # No public ports! Only the app can talk to it via spendmux_network
+    networks:
+      - spendmux_network
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U spendmux -d spendmux"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    deploy:
+      replicas: 3
+      update_config:
+        order: start-first
+        failure_action: rollback
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - spendmux_network
+      - proxy_net
+    # .env is mounted as a file the app reads itself (cmd/server/main.go), not
+    # passed as environment variables, so secrets stay out of the process
+    # environment (/proc/*/environ) and out of `docker inspect`.
+    # On the host: chown <you>:10001 .env && chmod 640 .env
+    volumes:
+      - ./.env:/etc/spendmux/.env:ro
+    environment:
+      APP_ENV: production
+      PORT: 8080
+      VAULT_PRIVATE_KEY_FILE: /run/secrets/vault.pem
+    secrets:
+      - vault.pem
+    restart: unless-stopped
+    # Room for SHUTDOWN_DRAIN_SECONDS (120) so long streams finish on deploys.
+    stop_grace_period: 150s
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/health/ready"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy_net"
+      
+      # Site host, API host, and the previous host kept alive for customers who pasted it.
+      # The optional two default to SPENDMUX_HOST, so a single-host setup needs nothing else.
+      - "traefik.http.routers.spendmux-app.rule=Host(`${SPENDMUX_HOST:?set SPENDMUX_HOST}`) || Host(`${SPENDMUX_API_HOST:-${SPENDMUX_HOST}}`) || Host(`${SPENDMUX_LEGACY_HOST:-${SPENDMUX_HOST}}`)"
+      - "traefik.http.routers.spendmux-app.entrypoints=websecure"
+      - "traefik.http.routers.spendmux-app.tls.certresolver=myresolver"
+      - "traefik.http.routers.spendmux-app.middlewares=spendmux-ratelimit"
+      - "traefik.http.middlewares.spendmux-ratelimit.ratelimit.average=20"
+      - "traefik.http.middlewares.spendmux-ratelimit.ratelimit.period=1s"
+      - "traefik.http.middlewares.spendmux-ratelimit.ratelimit.burst=40"
+      # Per visitor, not per Cloudflare edge IP (see X-Real-IP in docs/production.md).
+      - "traefik.http.middlewares.spendmux-ratelimit.ratelimit.sourcecriterion.requestheadername=X-Real-Ip"
+      
+      - "traefik.http.routers.spendmux-app.service=spendmux-app-svc"
+      - "traefik.http.services.spendmux-app-svc.loadbalancer.server.port=8080"
+      # A draining replica fails /health/ready and stops getting new requests.
+      - "traefik.http.services.spendmux-app-svc.loadbalancer.healthcheck.path=/health/ready"
+      - "traefik.http.services.spendmux-app-svc.loadbalancer.healthcheck.interval=3s"
+      - "traefik.http.services.spendmux-app-svc.loadbalancer.sticky.cookie=true"
+      - "traefik.http.services.spendmux-app-svc.loadbalancer.sticky.cookie.name=spendmux_affinity"
+      - "traefik.http.services.spendmux-app-svc.loadbalancer.sticky.cookie.secure=true"
+      - "traefik.http.services.spendmux-app-svc.loadbalancer.sticky.cookie.httpOnly=true"
+
+  # Nightly encrypted pg_dump to Backblaze B2 (or any rclone remote). Restore:
+  #   docker compose -f docker-compose.production.yml run --rm \
+  #     -v /path/to/backup-age-key.txt:/run/secrets/backup-age-key:ro backup restore.sh latest
+  # Optional: enable with  docker compose --profile backup ... up -d
+  backup:
+    profiles: ["backup"]
+    build:
+      context: deploy/backup
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - spendmux_network
+    environment:
+      PGPASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+      BACKUP_REMOTE: ${BACKUP_REMOTE:-}
+      BACKUP_AGE_RECIPIENT: ${BACKUP_AGE_RECIPIENT:-}
+      BACKUP_AT: ${BACKUP_AT:-03:00}
+      BACKUP_KEEP_DAYS: ${BACKUP_KEEP_DAYS:-30}
+      BACKUP_PING_URL: ${BACKUP_PING_URL:-}
+      RCLONE_CONFIG: /dev/null
+      RCLONE_CONFIG_B2_TYPE: b2
+      RCLONE_CONFIG_B2_ACCOUNT: ${B2_KEY_ID:-}
+      RCLONE_CONFIG_B2_KEY: ${B2_APPLICATION_KEY:-}
+      # Deleted backups free their space instead of becoming hidden versions.
+      RCLONE_CONFIG_B2_HARD_DELETE: "true"
+    volumes:
+      - backups_data:/backups
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+secrets:
+  vault.pem:
+    file: ${VAULT_PRIVATE_KEY_PATH:?set VAULT_PRIVATE_KEY_PATH to the vault.pem on the host}
+
+volumes:
+  postgres_data:
+  backups_data:
+  letsencrypt:
+
+networks:
+  spendmux_network:
+    driver: bridge
+  proxy_net:
+    name: proxy_net
+  # Only Traefik and the socket proxy; no internet access.
+  docker_api:
+    internal: true

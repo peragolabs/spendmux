@@ -1,0 +1,98 @@
+/**
+ * Ocean design tokens — Keller marketplace default.
+ * Override via src/theme/themes/*.css for runtime dark/forest variants.
+ */
+:root {
+  /* ───────── color ───────── */
+  --color-bg: #fafaf7;
+  --color-bg-alt: #eef4fb;
+  --color-surface: #ffffff;
+  --color-surface-2: #f4f4f0;
+  --color-primary: #0057ff;
+  --color-primary-hover: #3b82f6;
+  --color-primary-soft: rgba(11, 92, 255, 0.08);
+  --color-primary-contrast: #ffffff;
+  --color-accent: #00c853;
+  --color-accent-contrast: #ffffff;
+  --color-text: #09090b;
+  --color-text-muted: #52525b;
+  --color-text-subtle: #a1a1aa;
+  --color-border: #e4e4e7;
+  --color-border-strong: #d4d4d8;
+  --color-danger: #e11d48;
+  --color-danger-hover: #be123c;
+  --color-warning: #d97706;
+  --color-success: #059669;
+
+  --color-header-bg: rgba(255, 255, 255, 0.85);
+  --color-overlay: rgba(15, 23, 42, 0.5);
+  --color-code-bg: #0b0b0f;
+  --color-code-fg: #d4d4d8;
+
+  --gradient-hero: radial-gradient(
+      ellipse 80% 60% at 10% -10%,
+      rgba(11, 92, 255, 0.14),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 90% 10%,
+      rgba(14, 165, 233, 0.12),
+      transparent 50%
+    ),
+    linear-gradient(180deg, #f6f9fc 0%, #eef4fb 100%);
+  --gradient-cta: linear-gradient(135deg, #0b5cff 0%, #0ea5e9 100%);
+  --gradient-card-shine: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+
+  /* ───────── typography ───────── */
+  --font-display: "Outfit", "Cabinet Grotesk", system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  --fs-display: clamp(2.75rem, 4.5vw + 1rem, 4.25rem);
+  --fs-h1: clamp(2rem, 2.5vw + 1rem, 2.75rem);
+  --fs-h2: clamp(1.625rem, 1.5vw + 1rem, 2.125rem);
+  --fs-h3: 1.125rem;
+  --fs-body: 1rem;
+  --fs-sm: 0.9375rem;
+  --fs-xs: 0.8125rem;
+  --fs-mono-label: 0.6875rem;
+
+  --letter-display: -0.025em;
+  --letter-mono-label: 0.14em;
+
+  /* ───────── radii ───────── */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 8px 30px -12px rgba(15, 23, 42, 0.12);
+  --shadow-lg: 0 24px 64px -24px rgba(11, 92, 255, 0.22);
+  --shadow-xl: 0 32px 80px -32px rgba(15, 23, 42, 0.2);
+  --shadow-hard: 6px 6px 0 0 var(--color-primary);
+  --shadow-glow: 0 0 0 1px var(--color-primary), 0 16px 60px -16px rgba(0, 87, 255, 0.45);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-fast: 150ms var(--ease-out);
+  --transition-base: 250ms var(--ease-out);
+
+  --container-max: 1140px;
+  --header-height: 72px;
+
+}
