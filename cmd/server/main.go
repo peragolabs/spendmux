@@ -13,16 +13,16 @@ import (
 
 	"github.com/joho/godotenv"
 
-	"github.com/vrannang1/spendmux/internal/actor"
-	"github.com/vrannang1/spendmux/internal/config"
-	"github.com/vrannang1/spendmux/internal/core"
-	appcrypto "github.com/vrannang1/spendmux/internal/crypto"
-	"github.com/vrannang1/spendmux/internal/database"
-	"github.com/vrannang1/spendmux/internal/maintenance"
-	"github.com/vrannang1/spendmux/internal/router"
-	"github.com/vrannang1/spendmux/internal/supervision"
-	"github.com/vrannang1/spendmux/internal/telemetry"
-	"github.com/vrannang1/spendmux/internal/upstream"
+	"github.com/peragolabs/spendmux/internal/actor"
+	"github.com/peragolabs/spendmux/internal/config"
+	"github.com/peragolabs/spendmux/internal/core"
+	appcrypto "github.com/peragolabs/spendmux/internal/crypto"
+	"github.com/peragolabs/spendmux/internal/database"
+	"github.com/peragolabs/spendmux/internal/maintenance"
+	"github.com/peragolabs/spendmux/internal/router"
+	"github.com/peragolabs/spendmux/internal/supervision"
+	"github.com/peragolabs/spendmux/internal/telemetry"
+	"github.com/peragolabs/spendmux/internal/upstream"
 )
 
 func main() {

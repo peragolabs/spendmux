@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vrannang1/spendmux/internal/actor"
+	"github.com/peragolabs/spendmux/internal/actor"
 )
 
 type RestartPolicy string

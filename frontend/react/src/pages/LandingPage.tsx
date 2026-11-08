@@ -259,7 +259,7 @@ export default function LandingPage() {
           </div>
           <div className="mt-5 flex flex-col gap-3 rounded-2xl border border-dashed border-border p-5 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
             <p className="flex items-start gap-2"><Lock className="mt-0.5 h-4 w-4 shrink-0 text-primary" />Keys never touch a third-party server: Spendmux runs next to your app.</p>
-            <a className="inline-flex shrink-0 items-center gap-1.5 font-medium text-primary hover:underline" href="https://github.com/vrannang1/spendmux" target="_blank" rel="noreferrer noopener"><GitFork className="h-4 w-4" />Source on GitHub</a>
+            <a className="inline-flex shrink-0 items-center gap-1.5 font-medium text-primary hover:underline" href="https://github.com/peragolabs/spendmux" target="_blank" rel="noreferrer noopener"><GitFork className="h-4 w-4" />Source on GitHub</a>
           </div>
         </div>
       </section>

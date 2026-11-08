@@ -20,15 +20,15 @@ import (
 	"github.com/gofiber/websocket/v2"
 	"github.com/google/uuid"
 
-	"github.com/vrannang1/spendmux/internal/actor"
-	"github.com/vrannang1/spendmux/internal/auth"
-	"github.com/vrannang1/spendmux/internal/database"
-	"github.com/vrannang1/spendmux/internal/providers"
-	"github.com/vrannang1/spendmux/internal/upstream"
-	"github.com/vrannang1/spendmux/models"
-	"github.com/vrannang1/spendmux/oss/keys"
-	"github.com/vrannang1/spendmux/oss/proxy"
-	"github.com/vrannang1/spendmux/oss/usage"
+	"github.com/peragolabs/spendmux/internal/actor"
+	"github.com/peragolabs/spendmux/internal/auth"
+	"github.com/peragolabs/spendmux/internal/database"
+	"github.com/peragolabs/spendmux/internal/providers"
+	"github.com/peragolabs/spendmux/internal/upstream"
+	"github.com/peragolabs/spendmux/models"
+	"github.com/peragolabs/spendmux/oss/keys"
+	"github.com/peragolabs/spendmux/oss/proxy"
+	"github.com/peragolabs/spendmux/oss/usage"
 )
 
 type ChatMessage struct {

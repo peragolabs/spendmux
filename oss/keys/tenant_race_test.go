@@ -6,8 +6,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/vrannang1/spendmux/internal/testdb"
-	"github.com/vrannang1/spendmux/models"
+	"github.com/peragolabs/spendmux/internal/testdb"
+	"github.com/peragolabs/spendmux/models"
 )
 
 // Two tokens of one account race for the last dollar of a shared tenant cap;

@@ -1,4 +1,4 @@
-module github.com/vrannang1/spendmux
+module github.com/peragolabs/spendmux
 
 go 1.26.10
 

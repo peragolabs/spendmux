@@ -7,7 +7,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/vrannang1/spendmux/models"
+	"github.com/peragolabs/spendmux/models"
 )
 
 func keyRow(hint string, weight int, cooldown *time.Time) models.ProviderKey {

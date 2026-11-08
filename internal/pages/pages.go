@@ -1,8 +1,8 @@
 package pages
 
 import (
-	"github.com/vrannang1/spendmux/internal/auth"
-	"github.com/vrannang1/spendmux/internal/core"
+	"github.com/peragolabs/spendmux/internal/auth"
+	"github.com/peragolabs/spendmux/internal/core"
 	"os"
 	"strings"
 

@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"github.com/vrannang1/spendmux/internal/auth"
+	"github.com/peragolabs/spendmux/internal/auth"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"

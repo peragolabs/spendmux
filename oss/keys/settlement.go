@@ -1,7 +1,7 @@
 package keys
 
 import (
-	"github.com/vrannang1/spendmux/models"
+	"github.com/peragolabs/spendmux/models"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 	"time"

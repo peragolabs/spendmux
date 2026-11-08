@@ -30,8 +30,8 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 
-	"github.com/vrannang1/spendmux/internal/database"
-	"github.com/vrannang1/spendmux/models"
+	"github.com/peragolabs/spendmux/internal/database"
+	"github.com/peragolabs/spendmux/models"
 )
 
 // Header names. HeaderThread opts a request in; the response echoes how many

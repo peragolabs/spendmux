@@ -3,7 +3,7 @@ package keys
 import (
 	"github.com/gofiber/fiber/v2"
 
-	appcrypto "github.com/vrannang1/spendmux/internal/crypto"
+	appcrypto "github.com/peragolabs/spendmux/internal/crypto"
 )
 
 // VaultPublicKeyHandler serves the public half of the vault keypair so the

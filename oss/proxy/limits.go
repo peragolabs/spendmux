@@ -10,7 +10,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
-	"github.com/vrannang1/spendmux/internal/providers"
+	"github.com/peragolabs/spendmux/internal/providers"
 )
 
 // maxCompletionLimit rejects absurd output limits before they are priced.

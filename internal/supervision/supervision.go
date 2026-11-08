@@ -3,8 +3,8 @@ package supervision
 import (
 	"time"
 
-	"github.com/vrannang1/spendmux/internal/actor"
-	"github.com/vrannang1/spendmux/internal/supervisor"
+	"github.com/peragolabs/spendmux/internal/actor"
+	"github.com/peragolabs/spendmux/internal/supervisor"
 )
 
 var (

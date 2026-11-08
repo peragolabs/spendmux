@@ -3,7 +3,7 @@ package providers_test
 import (
 	"testing"
 
-	"github.com/vrannang1/spendmux/internal/providers"
+	"github.com/peragolabs/spendmux/internal/providers"
 )
 
 func TestEstimateCostUSDMicros(t *testing.T) {

@@ -10,10 +10,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/vrannang1/spendmux/internal/core"
-	"github.com/vrannang1/spendmux/internal/database"
-	"github.com/vrannang1/spendmux/internal/utils"
-	"github.com/vrannang1/spendmux/models"
+	"github.com/peragolabs/spendmux/internal/core"
+	"github.com/peragolabs/spendmux/internal/database"
+	"github.com/peragolabs/spendmux/internal/utils"
+	"github.com/peragolabs/spendmux/models"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"

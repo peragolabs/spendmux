@@ -10,8 +10,8 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 
-	"github.com/vrannang1/spendmux/models"
-	"github.com/vrannang1/spendmux/oss/memory"
+	"github.com/peragolabs/spendmux/models"
+	"github.com/peragolabs/spendmux/oss/memory"
 )
 
 // memorySession carries one request's opt-in memory: who owns the thread, and

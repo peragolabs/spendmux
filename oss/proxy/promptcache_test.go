@@ -10,7 +10,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/valyala/fasthttp"
 
-	"github.com/vrannang1/spendmux/models"
+	"github.com/peragolabs/spendmux/models"
 )
 
 func marks(t *testing.T, v interface{}) int {

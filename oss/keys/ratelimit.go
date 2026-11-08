@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/vrannang1/spendmux/internal/database"
-	"github.com/vrannang1/spendmux/models"
+	"github.com/peragolabs/spendmux/internal/database"
+	"github.com/peragolabs/spendmux/models"
 )
 
 const (

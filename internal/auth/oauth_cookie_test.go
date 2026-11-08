@@ -8,10 +8,10 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
-	"github.com/vrannang1/spendmux/internal/core"
-	"github.com/vrannang1/spendmux/internal/testdb"
-	"github.com/vrannang1/spendmux/internal/utils"
-	"github.com/vrannang1/spendmux/models"
+	"github.com/peragolabs/spendmux/internal/core"
+	"github.com/peragolabs/spendmux/internal/testdb"
+	"github.com/peragolabs/spendmux/internal/utils"
+	"github.com/peragolabs/spendmux/models"
 )
 
 // The browser-binding cookie must reach every registered callback path,

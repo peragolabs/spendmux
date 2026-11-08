@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	appcrypto "github.com/vrannang1/spendmux/internal/crypto"
+	appcrypto "github.com/peragolabs/spendmux/internal/crypto"
 )
 
 func TestEncryptDecryptRoundTrip(t *testing.T) {

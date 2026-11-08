@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/vrannang1/spendmux/internal/testdb"
-	"github.com/vrannang1/spendmux/models"
+	"github.com/peragolabs/spendmux/internal/testdb"
+	"github.com/peragolabs/spendmux/models"
 )
 
 func TestExpiredReservationPreservesUnrecordedSpendExactlyOnce(t *testing.T) {

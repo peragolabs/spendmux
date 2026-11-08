@@ -15,10 +15,10 @@ import (
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 
-	"github.com/vrannang1/spendmux/internal/crypto"
-	"github.com/vrannang1/spendmux/internal/database"
-	"github.com/vrannang1/spendmux/internal/providers"
-	"github.com/vrannang1/spendmux/models"
+	"github.com/peragolabs/spendmux/internal/crypto"
+	"github.com/peragolabs/spendmux/internal/database"
+	"github.com/peragolabs/spendmux/internal/providers"
+	"github.com/peragolabs/spendmux/models"
 )
 
 // Response cache (opt-in). A request is cached when it sends

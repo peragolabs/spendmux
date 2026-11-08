@@ -3,10 +3,10 @@ package debug
 import (
 	"time"
 
-	"github.com/vrannang1/spendmux/internal/actor"
-	"github.com/vrannang1/spendmux/internal/auth"
-	"github.com/vrannang1/spendmux/internal/core"
-	"github.com/vrannang1/spendmux/internal/supervision"
+	"github.com/peragolabs/spendmux/internal/actor"
+	"github.com/peragolabs/spendmux/internal/auth"
+	"github.com/peragolabs/spendmux/internal/core"
+	"github.com/peragolabs/spendmux/internal/supervision"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"

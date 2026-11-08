@@ -205,7 +205,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
           <FooterCol title="Legal" links={[
             { label: 'Terms',   href: '/terms' },
             { label: 'Privacy', href: '/privacy' },
-            { label: 'Source on GitHub', href: 'https://github.com/vrannang1/spendmux' },
+            { label: 'Source on GitHub', href: 'https://github.com/peragolabs/spendmux' },
             { label: 'Hosted: spendmux.com', href: 'https://spendmux.com' },
           ]} />
         </div>

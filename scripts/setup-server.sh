@@ -80,7 +80,7 @@ $(cat "$key.pub")
 
 Then, as $owner:
   ssh -T git@github.com     (should greet the repository by name)
-  cd /opt/apps && git clone git@github.com:vrannang1/spendmux.git
+  cd /opt/apps && git clone git@github.com:peragolabs/spendmux.git
   then copy your production .env into the checkout and let only you and the
   app container (uid/gid 10001) read it:
     sudo chown $owner:10001 .env && chmod 640 .env

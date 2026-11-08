@@ -2,8 +2,8 @@ package core
 
 import (
 	"fmt"
-	"github.com/vrannang1/spendmux/internal/supervision"
-	"github.com/vrannang1/spendmux/oss/memory"
+	"github.com/peragolabs/spendmux/internal/supervision"
+	"github.com/peragolabs/spendmux/oss/memory"
 	"sync"
 	"time"
 )

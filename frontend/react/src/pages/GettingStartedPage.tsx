@@ -80,7 +80,7 @@ resp = client.chat.completions.create(
 )`}</pre>
           <div className="mt-5 flex flex-wrap gap-3">
             <Button asChild><a href="/login">Sign in and add a key <ArrowRight className="h-4 w-4" /></a></Button>
-            <Button variant="outline" asChild><a href="https://github.com/vrannang1/spendmux" target="_blank" rel="noreferrer noopener">Source on GitHub</a></Button>
+            <Button variant="outline" asChild><a href="https://github.com/peragolabs/spendmux" target="_blank" rel="noreferrer noopener">Source on GitHub</a></Button>
           </div>
         </div>
       </section>

@@ -10,13 +10,13 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 
-	"github.com/vrannang1/spendmux/internal/auth"
-	"github.com/vrannang1/spendmux/internal/core"
-	appcrypto "github.com/vrannang1/spendmux/internal/crypto"
-	"github.com/vrannang1/spendmux/internal/database"
-	"github.com/vrannang1/spendmux/internal/providers"
-	"github.com/vrannang1/spendmux/models"
-	"github.com/vrannang1/spendmux/oss/memory"
+	"github.com/peragolabs/spendmux/internal/auth"
+	"github.com/peragolabs/spendmux/internal/core"
+	appcrypto "github.com/peragolabs/spendmux/internal/crypto"
+	"github.com/peragolabs/spendmux/internal/database"
+	"github.com/peragolabs/spendmux/internal/providers"
+	"github.com/peragolabs/spendmux/models"
+	"github.com/peragolabs/spendmux/oss/memory"
 )
 
 // MintPlatformAPIKey creates a hashed bearer token for the user. Returns plaintext once.

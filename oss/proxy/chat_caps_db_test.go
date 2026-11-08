@@ -12,9 +12,9 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
-	appcrypto "github.com/vrannang1/spendmux/internal/crypto"
-	"github.com/vrannang1/spendmux/internal/testdb"
-	"github.com/vrannang1/spendmux/models"
+	appcrypto "github.com/peragolabs/spendmux/internal/crypto"
+	"github.com/peragolabs/spendmux/internal/testdb"
+	"github.com/peragolabs/spendmux/models"
 	"gorm.io/gorm"
 )
 

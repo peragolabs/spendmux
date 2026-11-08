@@ -6,7 +6,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 
-	"github.com/vrannang1/spendmux/models"
+	"github.com/peragolabs/spendmux/models"
 )
 
 // Provider prompt caching (on by default). Anthropic bills a cached prompt

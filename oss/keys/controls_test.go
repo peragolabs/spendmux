@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/vrannang1/spendmux/models"
+	"github.com/peragolabs/spendmux/models"
 )
 
 func TestTokenStatus(t *testing.T) {

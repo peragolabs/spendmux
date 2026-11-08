@@ -4,9 +4,9 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/vrannang1/spendmux/internal/supervision"
-	"github.com/vrannang1/spendmux/oss/keys"
-	"github.com/vrannang1/spendmux/oss/proxy"
+	"github.com/peragolabs/spendmux/internal/supervision"
+	"github.com/peragolabs/spendmux/oss/keys"
+	"github.com/peragolabs/spendmux/oss/proxy"
 )
 
 // Start runs small, idempotent database cleanup jobs. It is safe for every

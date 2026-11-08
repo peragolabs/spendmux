@@ -13,11 +13,11 @@ import (
 
 	"github.com/google/uuid"
 
-	appcrypto "github.com/vrannang1/spendmux/internal/crypto"
-	"github.com/vrannang1/spendmux/internal/database"
-	"github.com/vrannang1/spendmux/internal/providers"
-	"github.com/vrannang1/spendmux/internal/upstream"
-	"github.com/vrannang1/spendmux/models"
+	appcrypto "github.com/peragolabs/spendmux/internal/crypto"
+	"github.com/peragolabs/spendmux/internal/database"
+	"github.com/peragolabs/spendmux/internal/providers"
+	"github.com/peragolabs/spendmux/internal/upstream"
+	"github.com/peragolabs/spendmux/models"
 )
 
 // A user can save several keys for one provider. Each request walks them in

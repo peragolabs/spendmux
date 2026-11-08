@@ -7,9 +7,9 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 
-	"github.com/vrannang1/spendmux/internal/auth"
-	"github.com/vrannang1/spendmux/internal/database"
-	"github.com/vrannang1/spendmux/models"
+	"github.com/peragolabs/spendmux/internal/auth"
+	"github.com/peragolabs/spendmux/internal/database"
+	"github.com/peragolabs/spendmux/models"
 )
 
 // Token kill switches and edits. Pausing refuses every call on a token at

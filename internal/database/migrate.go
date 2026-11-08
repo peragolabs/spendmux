@@ -1,7 +1,7 @@
 package database
 
 import (
-	"github.com/vrannang1/spendmux/models"
+	"github.com/peragolabs/spendmux/models"
 
 	"gorm.io/gorm"
 )

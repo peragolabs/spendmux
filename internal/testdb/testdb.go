@@ -10,7 +10,7 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/vrannang1/spendmux/internal/database"
+	"github.com/peragolabs/spendmux/internal/database"
 )
 
 var (

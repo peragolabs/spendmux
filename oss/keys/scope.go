@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/vrannang1/spendmux/models"
+	"github.com/peragolabs/spendmux/models"
 )
 
 // EnforceKeyScope rejects requests outside a virtual key's provider/model allowlist.

@@ -6,8 +6,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/vrannang1/spendmux/internal/testdb"
-	"github.com/vrannang1/spendmux/models"
+	"github.com/peragolabs/spendmux/internal/testdb"
+	"github.com/peragolabs/spendmux/models"
 )
 
 func TestOAuthStateIsSingleUseAndProviderBound(t *testing.T) {

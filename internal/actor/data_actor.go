@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/vrannang1/spendmux/models"
+	"github.com/peragolabs/spendmux/models"
 )
 
 // DataActor runs DB side-effects (usage logging) in an isolated mailbox loop.

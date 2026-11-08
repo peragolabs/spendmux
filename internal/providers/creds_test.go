@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/vrannang1/spendmux/internal/providers"
+	"github.com/peragolabs/spendmux/internal/providers"
 )
 
 func TestMarshalParseAWSCreds(t *testing.T) {

@@ -4,8 +4,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/vrannang1/spendmux/models"
-	"github.com/vrannang1/spendmux/oss/keys"
+	"github.com/peragolabs/spendmux/models"
+	"github.com/peragolabs/spendmux/oss/keys"
 )
 
 func TestEnforceKeyScope(t *testing.T) {
